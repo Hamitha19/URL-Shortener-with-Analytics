@@ -12,7 +12,7 @@ const getBackendUrl = () => {
   return window.location.origin;
 };
 
-export const BACKEND_URL = getBackendUrl();
+export const BACKEND_URL = import.meta.env.VITE_API_URL || getBackendUrl();
 export const API_BASE_URL = `${BACKEND_URL}/api`;
 
 export const apiFetch = async (endpoint, options = {}) => {

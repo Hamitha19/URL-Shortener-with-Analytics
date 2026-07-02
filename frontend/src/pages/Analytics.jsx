@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import apiFetch from '../utils/api';
+import apiFetch, { BACKEND_URL } from '../utils/api';
 import { 
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
   BarChart, Bar, Cell, PieChart, Pie, Legend
@@ -73,7 +73,7 @@ export const Analytics = () => {
   }
 
   const { url, clicks, uniqueClicks, timeline, browsers, os, devices, referrers, recentVisits } = analyticsData;
-  const shortUrlStr = `http://localhost:5000/r/${url.shortCode}`;
+  const shortUrlStr = `${BACKEND_URL}/r/${url.shortCode}`;
 
   // Custom tooltips for Recharts
   const CustomTooltip = ({ active, payload, label }) => {
