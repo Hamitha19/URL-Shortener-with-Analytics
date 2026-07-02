@@ -430,8 +430,8 @@ export const Dashboard = () => {
                       <div key={i} style={{ display: 'flex', justifyContent: 'space-between', background: 'rgba(0, 0, 0, 0.03)', padding: '8px 12px', borderRadius: '6px', fontSize: '13px', alignItems: 'center' }}>
                         <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', color: 'var(--text-secondary)', maxWidth: '300px' }}>{r.originalUrl}</span>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                          <span style={{ color: 'var(--accent-indigo)', fontWeight: '600' }}>{r.shortUrl}</span>
-                          <button type="button" className="btn btn-secondary btn-sm" style={{ padding: '4px' }} onClick={() => copyToClipboard(r.shortUrl, `bulk_${i}`)}>
+                          <span style={{ color: 'var(--accent-indigo)', fontWeight: '600' }}>{`${BACKEND_URL}/r/${r.shortCode}`}</span>
+                          <button type="button" className="btn btn-secondary btn-sm" style={{ padding: '4px' }} onClick={() => copyToClipboard(`${BACKEND_URL}/r/${r.shortCode}`, `bulk_${i}`)}>
                             {copiedId === `bulk_${i}` ? <Check size={12} style={{ color: '#10b981' }} /> : <Copy size={12} />}
                           </button>
                         </div>
@@ -508,7 +508,7 @@ export const Dashboard = () => {
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
           {filteredLinks.map((link) => {
-            const shortUrlStr = link.shortUrl || `${BACKEND_URL}/r/${link.shortCode}`;
+            const shortUrlStr = `${BACKEND_URL}/r/${link.shortCode}`;
             return (
               <div key={link._id} className="glass-panel animate-fade-in" style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px' }}>

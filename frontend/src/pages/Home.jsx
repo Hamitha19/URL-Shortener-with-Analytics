@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Link2, Copy, Check, BarChart2, QrCode, Shield, Zap, Sparkles } from 'lucide-react';
-import apiFetch from '../utils/api';
+import apiFetch, { BACKEND_URL } from '../utils/api';
 import { QRCodeSVG } from 'qrcode.react';
 
 const downloadSVG = (svgId, fileName) => {
@@ -76,11 +76,12 @@ export const Home = () => {
         body: { originalUrl: url }
       });
       if (data.success) {
-        setShortUrl(data.shortUrl);
+        const constructedShortUrl = `${BACKEND_URL}/r/${data.data.shortCode}`;
+        setShortUrl(constructedShortUrl);
         const newLink = {
           id: data.data._id,
           originalUrl: data.data.originalUrl,
-          shortUrl: data.shortUrl,
+          shortUrl: constructedShortUrl,
           title: data.data.title,
           shortCode: data.data.shortCode
         };
