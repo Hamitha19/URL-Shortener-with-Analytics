@@ -22,7 +22,14 @@ const PORT = process.env.PORT || 5000;
 const defaultBaseUrl = `http://${localIp}:${PORT}`;
 
 const getBaseUrl = () => {
-  let baseUrl = process.env.BASE_URL || defaultBaseUrl;
+  let baseUrl = process.env.BASE_URL;
+  if (!baseUrl) {
+    if (process.env.NODE_ENV === 'production') {
+      baseUrl = 'https://url-shortener-with-analytics-r4j8.onrender.com';
+    } else {
+      baseUrl = defaultBaseUrl;
+    }
+  }
   // If base URL is localhost/127.0.0.1, replace with the machine's local IP address
   // to allow mobile devices on the same network to scan the generated QR codes.
   if (baseUrl.includes('localhost') || baseUrl.includes('127.0.0.1')) {
