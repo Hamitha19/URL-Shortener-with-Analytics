@@ -8,8 +8,8 @@ const getBackendUrl = () => {
   if (/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/.test(window.location.hostname)) {
     return `${window.location.protocol}//${window.location.hostname}:5000`;
   }
-  // Otherwise, assume production single-domain deployment
-  return window.location.origin;
+  // Otherwise, fallback to the Render backend URL
+  return 'https://url-shortener-with-analytics-r4j8.onrender.com';
 };
 
 export const BACKEND_URL = import.meta.env.VITE_API_URL || getBackendUrl();
